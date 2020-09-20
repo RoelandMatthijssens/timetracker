@@ -1,0 +1,33 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  adapter: sqlite3
+  database: db/development.sqlite3
+  # username: <%= Rails.application.credentials.development[:db_user] %>
+  # password: <%= Rails.application.credentials.development[:db_password] %>
+  # database: <%= Rails.application.credentials.development[:db_name] %>
+
+test:
+  <<: *default
+  # username: <%= Rails.application.credentials.test[:db_user] %>
+  # password: <%= Rails.application.credentials.test[:db_password] %>
+  # database: <%= Rails.application.credentials.test[:db_name] %>
+  adapter: sqlite3
+  database: db/test.sqlite3
+
+staging:
+  <<: *default
+  database: mosard_staging
+  username: <%= Rails.application.credentials.staging[:db_user] %>
+  password: <%= Rails.application.credentials.staging[:db_password] %>
+  database: <%= Rails.application.credentials.staging[:db_name] %>
+
+production:
+  <<: *default
+  username: <%= Rails.application.credentials.production[:db_user] %>
+  password: <%= Rails.application.credentials.production[:db_password] %>
+  database: <%= Rails.application.credentials.production[:db_name] %>
