@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @timelog.project_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @timelog.user_id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @timelog.amount %>
+</p>
+
+<%= link_to 'Edit', edit_timelog_path(@timelog) %> |
+<%= link_to 'Back', timelogs_path %>
