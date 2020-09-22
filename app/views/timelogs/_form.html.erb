@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :project_id %>
-    <%= form.text_field :project_id %>
+    <%= form.label :project %>
+    <%= collection_select(:timelog, :project_id, Project.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.label :user %>
+    <%= collection_select(:timelog, :user_id, User.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
