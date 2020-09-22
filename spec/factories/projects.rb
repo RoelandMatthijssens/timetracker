@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :project do
-    client { '' }
-    name { 'MyString' }
+    client
+    sequence(:name) { |n| "project-#{n.to_s.rjust(3, '0')}" }
   end
 end

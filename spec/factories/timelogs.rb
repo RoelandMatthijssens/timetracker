@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :timelog do
-    project { nil }
-    user { nil }
-    amount { '' }
+    project
+    user
+    amount { 12 }
   end
 end
