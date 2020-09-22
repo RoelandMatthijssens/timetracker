@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TimelogsController < ApplicationController
-  before_action :set_timelog, only: [:show, :edit, :update, :destroy]
+  before_action :set_timelog, only: %i[show edit update destroy]
 
   # GET /timelogs
   # GET /timelogs.json
@@ -9,8 +11,7 @@ class TimelogsController < ApplicationController
 
   # GET /timelogs/1
   # GET /timelogs/1.json
-  def show
-  end
+  def show; end
 
   # GET /timelogs/new
   def new
@@ -18,8 +19,7 @@ class TimelogsController < ApplicationController
   end
 
   # GET /timelogs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /timelogs
   # POST /timelogs.json
@@ -62,13 +62,14 @@ class TimelogsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_timelog
-      @timelog = Timelog.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def timelog_params
-      params.require(:timelog).permit(:project_id, :user_id, :amount)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_timelog
+    @timelog = Timelog.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def timelog_params
+    params.require(:timelog).permit(:project_id, :user_id, :amount)
+  end
 end
