@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_121812) do
+ActiveRecord::Schema.define(version: 2020_09_24_123518) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -32,11 +32,13 @@ ActiveRecord::Schema.define(version: 2020_09_21_121812) do
     t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "billable", default: true
     t.index ["project_id"], name: "index_timelogs_on_project_id"
     t.index ["user_id"], name: "index_timelogs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
