@@ -5,5 +5,6 @@ FactoryBot.define do
     project
     user
     amount { 12 }
+    billable { true }
   end
 end

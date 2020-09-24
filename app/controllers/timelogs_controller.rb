@@ -70,6 +70,6 @@ class TimelogsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def timelog_params
-    params.require(:timelog).permit(:project_id, :user_id, :amount)
+    params.require(:timelog).permit(:project_id, :user_id, :amount, :billable)
   end
 end

@@ -10,9 +10,16 @@ RSpec.describe Timelog, type: :model do
     timelog = build(:timelog, amount: -1)
     expect(timelog).to_not be_valid
   end
-  it { should validate_presence_of(:billable) }
   it 'should default to billable' do
     timelog = create(:timelog)
     expect(timelog.billable).to be_truthy
+  end
+  it 'should allow billable to be true' do
+    timelog = create(:timelog, billable: true)
+    expect(timelog.billable).to be_truthy
+  end
+  it 'should allow billable to be false' do
+    timelog = create(:timelog, billable: false)
+    expect(timelog.billable).to be_falsey
   end
 end

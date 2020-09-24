@@ -19,6 +19,7 @@
         <td><%= timelog.project.name %></td>
         <td><%= timelog.user.email %></td>
         <td><%= timelog.amount %></td>
+        <td><%= timelog.billable %></td>
         <td><%= link_to 'Show', timelog %></td>
         <td><%= link_to 'Edit', edit_timelog_path(timelog) %></td>
         <td><%= link_to 'Destroy', timelog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
