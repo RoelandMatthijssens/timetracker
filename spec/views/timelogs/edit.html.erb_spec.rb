@@ -13,6 +13,7 @@ RSpec.describe 'timelogs/edit', type: :view do
       assert_select 'select[name=?]', 'timelog[project_id]'
       assert_select 'select[name=?]', 'timelog[user_id]'
       assert_select 'input[name=?]', 'timelog[amount]'
+      assert_select 'input[name=?]', 'timelog[billable]'
     end
   end
 end
