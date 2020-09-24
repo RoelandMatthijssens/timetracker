@@ -7,15 +7,9 @@ development:
   <<: *default
   adapter: sqlite3
   database: db/development.sqlite3
-  # username: <%= Rails.application.credentials.development[:db_user] %>
-  # password: <%= Rails.application.credentials.development[:db_password] %>
-  # database: <%= Rails.application.credentials.development[:db_name] %>
 
 test:
   <<: *default
-  # username: <%= Rails.application.credentials.test[:db_user] %>
-  # password: <%= Rails.application.credentials.test[:db_password] %>
-  # database: <%= Rails.application.credentials.test[:db_name] %>
   adapter: sqlite3
   database: db/test.sqlite3
 

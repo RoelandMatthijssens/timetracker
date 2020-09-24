@@ -1,0 +1,69 @@
+version: 2.1 # Use 2.1 to enable using orbs and other features.
+
+# Declare the orbs that we'll use in our config.
+# read more about orbs: https://circleci.com/docs/2.0/using-orbs/
+orbs:
+  ruby: circleci/ruby@1.1.0
+  node: circleci/node@4.0.0
+
+jobs:
+  test:
+    docker:
+      - image: cimg/ruby:2.7-node
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: createrailsapp
+          POSTGRES_DB: createrailsapp_test
+          POSTGRES_PASSWORD: createrailsapp
+    environment:
+      BUNDLE_JOBS: "3"
+      BUNDLE_RETRY: "3"
+      DB_HOST: 127.0.0.1
+      RAILS_ENV: test
+    steps:
+      - checkout
+      - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      - run:
+          name: Lint
+          command: yarn lint
+      - run:
+          name: Tests
+          command: bundle exec rails test
+  deploy:
+    docker:
+      - image: cimg/ruby:2.7-node
+    steps:
+      - checkout
+      - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Cap deploy
+          command: bundle exec cap staging deploy
+      - run:
+          name: Start server
+          command: bundle exec cap staging puma:start
+
+# We use workflows to orchestrate the jobs that we declared above.
+workflows:
+  version: 2
+  CI:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore: master
+      - deploy:
+          filters:
+            branches:
+              only: master
