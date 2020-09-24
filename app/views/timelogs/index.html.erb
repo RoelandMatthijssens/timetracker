@@ -8,6 +8,7 @@
       <th>Project</th>
       <th>User</th>
       <th>Amount</th>
+      <th>Billable</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,8 +16,8 @@
   <tbody>
     <% @timelogs.each do |timelog| %>
       <tr>
-        <td><%= timelog.project_id %></td>
-        <td><%= timelog.user_id %></td>
+        <td><%= timelog.project.name %></td>
+        <td><%= timelog.user.email %></td>
         <td><%= timelog.amount %></td>
         <td><%= link_to 'Show', timelog %></td>
         <td><%= link_to 'Edit', edit_timelog_path(timelog) %></td>
