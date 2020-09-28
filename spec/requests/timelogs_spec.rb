@@ -17,6 +17,11 @@ require 'rails_helper'
 RSpec.describe '/timelogs', type: :request do
   # Timelog. As you add validations to Timelog, be sure to
   # adjust the attributes here as well.
+
+  before :each do
+    @user = create(:user)
+    sign_in @user
+  end
   let(:valid_attributes) do
     skip('Add a hash of attributes valid for your model')
   end
