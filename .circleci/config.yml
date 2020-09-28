@@ -37,7 +37,7 @@ jobs:
           command: yarn lint
       - run:
           name: Tests
-          command: bundle exec rails test
+          command: bundle exec rspec
   deploy:
     docker:
       - image: cimg/ruby:2.7-node
