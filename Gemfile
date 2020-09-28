@@ -29,6 +29,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'guard-rspec'
   gem 'guard-rubocop'
+  gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-parameterized'
   gem 'rspec-rails'

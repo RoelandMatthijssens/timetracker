@@ -2,16 +2,21 @@
 
 class TimelogsController < ApplicationController
   before_action :set_timelog, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[index show new edit create update destroy]
 
   # GET /timelogs
   # GET /timelogs.json
   def index
-    @timelogs = Timelog.all
+    @current_user = current_user
+    @timelogs = @current_user.timelogs
   end
 
   # GET /timelogs/1
   # GET /timelogs/1.json
-  def show; end
+  def show
+    @current_user = current_user
+    not_found and return unless @timelog.user == @current_user
+  end
 
   # GET /timelogs/new
   def new
@@ -25,10 +30,11 @@ class TimelogsController < ApplicationController
   # POST /timelogs.json
   def create
     @timelog = Timelog.new(timelog_params)
+    @timelog.user_id = current_user.id unless @timelog.user_id
 
     respond_to do |format|
       if @timelog.save
-        format.html { redirect_to @timelog, notice: 'Timelog was successfully created.' }
+        format.html { redirect_to timelogs_url, notice: 'Timelog was successfully created.' }
         format.json { render :show, status: :created, location: @timelog }
       else
         format.html { render :new }
@@ -40,6 +46,9 @@ class TimelogsController < ApplicationController
   # PATCH/PUT /timelogs/1
   # PATCH/PUT /timelogs/1.json
   def update
+    @current_user = current_user
+    not_found and return unless @timelog.user == @current_user
+
     respond_to do |format|
       if @timelog.update(timelog_params)
         format.html { redirect_to @timelog, notice: 'Timelog was successfully updated.' }
@@ -54,6 +63,9 @@ class TimelogsController < ApplicationController
   # DELETE /timelogs/1
   # DELETE /timelogs/1.json
   def destroy
+    @current_user = current_user
+    not_found and return unless @timelog.user == @current_user
+
     @timelog.destroy
     respond_to do |format|
       format.html { redirect_to timelogs_url, notice: 'Timelog was successfully destroyed.' }
