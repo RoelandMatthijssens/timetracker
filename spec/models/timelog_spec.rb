@@ -22,4 +22,8 @@ RSpec.describe Timelog, type: :model do
     timelog = create(:timelog, billable: false)
     expect(timelog.billable).to be_falsey
   end
+  it 'should log the timelog on today by default' do
+    timelog = create(:timelog, date: nil)
+    expect(timelog.date).to eq(Date.today)
+  end
 end
