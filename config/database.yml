@@ -15,7 +15,6 @@ test:
 
 staging:
   <<: *default
-  database: mosard_staging
   username: <%= Rails.application.credentials.staging[:db_user] %>
   password: <%= Rails.application.credentials.staging[:db_password] %>
   database: <%= Rails.application.credentials.staging[:db_name] %>
