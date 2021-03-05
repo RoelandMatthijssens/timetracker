@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 def seed_projects(projects)
   projects.each do |client_name, project_names|
     client = Client.find_by(name: client_name)

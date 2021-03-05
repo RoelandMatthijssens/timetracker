@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_03_04_110023) do
   create_table "timelogs", force: :cascade do |t|
     t.integer "project_id", null: false
     t.integer "user_id", null: false
-    t.integer "amount"
+    t.float "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "billable", default: true

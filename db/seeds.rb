@@ -17,7 +17,7 @@ PROJECTS = {
   "HuisVoorVeerkracht": %w[Ally IedereenOk Toolbox]
 }.freeze
 
-p('users')
+p('Users')
 seed_users
 
 p('Ciients')
@@ -25,3 +25,6 @@ seed_clients(PROJECTS.keys)
 
 p('Projects')
 seed_projects(PROJECTS)
+
+p('Timelogs')
+seed_timelogs(14)
