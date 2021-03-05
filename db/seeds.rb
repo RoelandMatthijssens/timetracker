@@ -12,10 +12,13 @@ Dir["#{Rails.root}/db/seeds/**/*.rb"].each { |file| load file }
 #   Character.create(name: 'Luke', movie: movies.first)
 
 PROJECTS = {
-  "BluePlanet": %w[TimeTracker L&D Vacation PreSales],
+  "BluePlanet": %w[TimeTracker L&D Vacation PreSales Coaching],
   "MoMA": %w[CorporateMembership],
   "HuisVoorVeerkracht": %w[Ally IedereenOk Toolbox]
 }.freeze
+
+p('users')
+seed_users
 
 p('Ciients')
 seed_clients(PROJECTS.keys)

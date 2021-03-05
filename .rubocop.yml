@@ -1,7 +1,9 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Layout/LineLength:
-  Max: 120
+  Max: 160
 Metrics/BlockLength:
-  Max: 10
+  Max: 30
   Exclude:
     - 'spec/**/*_spec.rb'
 Metrics/ClassLength:
@@ -18,10 +20,9 @@ AllCops:
   Exclude:
     - 'db/schema.rb'
     - 'db/migrate/*.rb'
+    - 'app/models/ckeditor/*'
     - 'config/**/*.rb'
     - 'bin/*'
     - 'Guardfile'
-    - 'Gemfile'
-    - 'Gemfile.lock'
     - 'vendor/**/*'
     - 'node_modules/**/*'

@@ -6,6 +6,9 @@ def seed_projects(projects)
     next unless client
 
     project_names.each do |project_name|
+      project = Project.find_by(name: project_name, client: client)
+      next if project
+
       Project.create!(
         client: client,
         name: project_name
