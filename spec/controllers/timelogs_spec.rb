@@ -24,7 +24,9 @@ describe TimelogsController do
       end
       it 'should assign @timelogs' do
         get :index
-        expect(assigns(:timelogs)).to include(@timelog)
+        expect(assigns(:timelogs)).to include(@timelog.project)
+        expect(assigns(:timelogs)[@timelog.project]).to include(@timelog.date)
+        expect(assigns(:timelogs)[@timelog.project][@timelog.date]).to include(@timelog)
       end
       it 'should only show timelogs for the logged in user' do
         someone_elses_timelog = create(:timelog)

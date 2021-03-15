@@ -14,6 +14,8 @@ Metrics/AbcSize:
   Max: 32
 Style/Documentation:
   Enabled: false
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
 
 AllCops:
   NewCops: enable

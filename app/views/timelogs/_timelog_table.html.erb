@@ -1,0 +1,33 @@
+<%# <% dates_this_month = (Date.today.beginning_of_month .. Date.today.end_of_month) %1> %>
+<% dates_this_week = (Date.today.beginning_of_week .. Date.today.end_of_week) %>
+<table>
+  <thead>
+    <tr>
+      <td>Client</td>
+      <td>Project</td>
+      <% dates_this_week.each do |date| %>
+        <td>
+          <%= date.to_s %>
+        </td>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% timelogs.each do |project, dates| %>
+      <tr>
+        <td><%= project.client.name %></td>
+        <td><%= project.name %></td>
+        <% dates_this_week.each do |date| %>
+          <td contenteditable>
+            <% timelogs = dates.fetch(date, []) %>
+            <% if timelogs.empty? %>
+              <%= 0 %>
+            <% else %>
+              <%= timelogs.map(&:amount).reduce(:+) %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -4,7 +4,7 @@ def seed_timelogs(count)
     count.times do |i|
       date = i.days.ago
       sum = 0
-      while sum < 8
+      while sum < 7
         hours = rand(0.25..2.0).round_to(0.25)
         Timelog.create!(
           user: user,

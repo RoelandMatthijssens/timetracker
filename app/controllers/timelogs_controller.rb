@@ -8,7 +8,8 @@ class TimelogsController < ApplicationController
   # GET /timelogs.json
   def index
     @current_user = current_user
-    @timelogs = @current_user.timelogs
+    # @timelogs = @current_user.timelogs
+    @timelogs = @current_user.timelogs_by_project_by_date
   end
 
   # GET /timelogs/1
